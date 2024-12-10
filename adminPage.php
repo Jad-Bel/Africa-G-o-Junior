@@ -74,33 +74,35 @@
                             <th class="border border-gray-300 px-4 py-2 text-left">Name</th>
                         </tr>
                     </thead>
+                    <!-- table body -->
                     <tbody>
-                        <!-- Example Row 1 -->
-                        <tr class="odd:bg-gray-100 even:bg-white">
-                            <td class="border border-gray-300 px-4 py-2">1</td>
-                            <td class="border border-gray-300 px-4 py-2 flex justify-between">Continent A
-                                <div>
-                                    <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
-                                    <a href="" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
-                                </div>
-                            </td>
-                              
-                        </tr>
-                        
-                        <!-- Example Row 2 -->
-                        <tr class="odd:bg-gray-100 even:bg-white">
-                            <td class="border border-gray-300 px-4 py-2">2</td>
-                            <td class="border border-gray-300 px-4 py-2">Continent B</td>
+                        <?php
+                            $servername = "localhost";
+                            $username = "root";
+                            $passwrd = "";
+                            $database = "jeux_geo";
                             
-    
-                        </tr>
-                        
-                        <!-- Example Row 3 -->
-                        <tr class="odd:bg-gray-100 even:bg-white">
-                            <td class="border border-gray-300 px-4 py-2">3</td>
-                            <td class="border border-gray-300 px-4 py-2">Continent C</td>
+                            $connect = mysqli_connect($servername, $username, $passwrd, $database);
+
+                            $data = "SELECT * FROM continent";
+                            $result = $connect -> query($data);
+
+                            if (!$result) {
+                                die("Invalid query: ". $connect->error);
+                            }
+
+                            while($row = $result->fetch_assoc()) { ?>
+                                <tr class="odd:bg-gray-100 even:bg-white">
+                                    <td class="border border-gray-300 px-4 py-2"><?= $row['continent_id'] ?></td>
+                                    <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['nom'] ?>
+                                        <div>
+                                            <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
+                                            <a href="" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
                                 
-                        </tr>
+                           <?php } ?>
                     </tbody>
                 </table>
             </main>
