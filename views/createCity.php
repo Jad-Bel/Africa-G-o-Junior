@@ -20,8 +20,35 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $pays = "";
     }
     
+    if(isset($_POST["Capital"])) {
+        $capital = $_POST["Capital"];
+    } else {
+        $capital = "";
+    }
 
+    do {
+        if (empty($name)) {
+            $errorMessage = "Veuillez remplir le champ du nom. Obligatoire !!";
+        } else if (empty($pays)) {
+            $errorMessage = "Veuillez selectioner le pays du ville.";
+        } else if (empty($pays) && empty($name)) {
+            $errorMessage = "Veuillez taper le nom et selectioner le pays du ville."; 
+        }  else {
+            
+            $sql = "INSERT INTO ville (`nom`, `capital`, `id_pays`) VALUES ('$name', '$capital', '$pays')";
+            $result = $connect -> query($sql);
         
+            if (!$result) {
+                echo "Invalid query: " . $connect->error ;
+        
+            } else {
+                $name = "";
+                $capital = "";
+                $pays = "";
+                $succesMessage = "Ville ajouter avec succes";
+            }
+            
+        }
     
         // $nom = "";
         // $population = "";
