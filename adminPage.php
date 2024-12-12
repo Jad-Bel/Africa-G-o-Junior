@@ -25,9 +25,6 @@
                             <li class="btn bg-[#f2902f] w-24 p-2 rounded-lg flex items-center justify-center font-semibold hover:bg-[#c66505] hover:transition-all duration-300 ease-in-out">
                                 <a href="">STUDENT</a>
                             </li>
-                            <li class="btn bg-[#f2902f] w-24 p-2 rounded-lg flex items-center justify-center font-semibold hover:bg-[#c66505] hover:transition-all duration-300 ease-in-out">
-                                <a href=""><button>ADD +</button></a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -46,7 +43,8 @@
                 <div class="continent p-4 flex items-center">
                     <button class="text-lg font-semibold mb-2 flex gap-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#f2902f"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80-28-28q-6-6-9-13t-3-15v-224q-33 0-56.5-23.5T360-520v-40L235-685q-35 42-55 94t-20 111q0 134 93 227t227 93Zm40-2q119-15 199.5-105T800-480q0-133-93.5-226.5T480-800q-44 0-84.5 11.5T320-757v77h142q18 0 34.5 8t27.5 22l56 70h60q17 0 28.5 11.5T680-540v42q0 9-2.5 17t-7.5 16L520-240v78Z"/></svg>
-                        Continent</button>
+                        Continent
+                    </button>
                 </div>
     
                 <!-- Pays Section -->
@@ -71,18 +69,13 @@
                     <thead class="bg-gray-500 text-white">
                         <tr>
                             <th class="border border-gray-300 px-4 py-2 text-left">ID</th>
-                            <th class="border border-gray-300 px-4 py-2 text-left">Name</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left flex items-center justify-between">Name</th>
                         </tr>
                     </thead>
                     <!-- table body -->
                     <tbody>
                         <?php
-                            $servername = "localhost";
-                            $username = "root";
-                            $passwrd = "";
-                            $database = "jeux_geo";
-                            
-                            $connect = mysqli_connect($servername, $username, $passwrd, $database);
+                            include "/xampp/htdocs/africa-geo-junior/views/connect.php";
 
                             $data = "SELECT * FROM continent";
                             $result = $connect -> query($data);
@@ -105,7 +98,7 @@
                            <?php } ?>
                     </tbody>
                 </table>
-
+                <!-- countries table -->
                 <table class="country-table min-w-full border-collapse border border-gray-300 hidden">
                     <!-- Table Header -->
                     <thead class="bg-gray-500 text-white">
@@ -113,7 +106,11 @@
                             <th class="border border-gray-300 px-4 py-2 text-left">ID</th>
                             <th class="border border-gray-300 px-4 py-2 text-left">Population</th>
                             <th class="border border-gray-300 px-4 py-2 text-left">Nom</th>
-                            <th class="border border-gray-300 px-4 py-2 text-left">Langue</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left flex items-center justify-between">Langue
+                                <div class="addCountryBtn rounded-xl font-bold text-lg flex items-center justify-center bg-[#f2902f] text-black w-12 p-1">
+                                    <button class=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <!-- table body -->
@@ -140,8 +137,8 @@
                                     <td class="border border-gray-300 px-4 py-2"><?= $row['nom'] ?></td>
                                     <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['langue'] ?>
                                         <div class="flex">
-                                            <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
-                                            <a href="" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
+                                            <a href="/views/edit.php ?id=$row['id_pays']" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
+                                            <a href="/views/delete.php ?id=$row['id_pays']" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
                                         </div>
                                 </td>
                                 </tr>
@@ -149,20 +146,26 @@
                            <?php } ?>
                     </tbody>
                 </table>
-
+                <!-- cities table -->
                 <table class="city-table min-w-full border-collapse border border-gray-300 hidden">
                     <!-- Table Header -->
                     <thead class="bg-gray-500 text-white">
                         <tr>
                             <th class="border border-gray-300 px-4 py-2 text-left">ID</th>
-                            <th class="border border-gray-300 px-4 py-2 text-left">Population</th>
-                            <th class="border border-gray-300 px-4 py-2 text-left">Nom</th>
-                            <th class="border border-gray-300 px-4 py-2 text-left">Langue</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left">Nom du ville</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left">Capital</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left flex items-center justify-between">id du pays 
+                                <div class="addCityBtn rounded-xl font-bold text-lg flex items-center justify-center bg-[#f2902f] text-black w-12 p-1">
+                                    <button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <!-- table body -->
                     <tbody>
                         <?php
+                            // include "addModal.html";
+                            
                             $servername = "localhost";
                             $username = "root";
                             $passwrd = "";
@@ -170,7 +173,7 @@
                             
                             $connect = mysqli_connect($servername, $username, $passwrd, $database);
 
-                            $data = "SELECT * FROM pays";
+                            $data = "SELECT * FROM ville";
                             $result = $connect -> query($data);
 
                             if (!$result) {
@@ -179,10 +182,10 @@
 
                             while($row = $result->fetch_assoc()) { ?>
                                 <tr class="odd:bg-gray-100 even:bg-white">
-                                    <td class="border border-gray-300 px-4 py-2"><?= $row['id_pays'] ?></td>
-                                    <td class="border border-gray-300 px-4 py-2"><?= $row['Population'] ?></td>
+                                    <td class="border border-gray-300 px-4 py-2"><?= $row['id_ville'] ?></td>
                                     <td class="border border-gray-300 px-4 py-2"><?= $row['nom'] ?></td>
-                                    <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['langue'] ?>
+                                    <td class="border border-gray-300 px-4 py-2"><?= ($row['capital'] == 1) ? "Oui" : "Non";  ?></td>
+                                    <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['id_pays'] ?>
                                         <div class="flex">
                                             <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
                                             <a href="" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
@@ -195,6 +198,48 @@
                 </table>
             </main>
         </div>
-    <script src="main.js"></script>
+
+        <!-- modal d'ajoute du pays -->
+        <div id="countryModal" class="fixed hidden absolute top-[12.5%] left-[35%]">
+            <div class="bg-gray-400 rounded-lg shadow-lg w-96 p-6">
+                <h2 class="text-xl font-bold mb-4">Ajouter un Pays</h2>
+                <form method="post">
+                    <div class="mb-4">
+                        <label for="nom" class="block text-black font-medium mb-2">Nom du Pays:</label>
+                        <input type="text" id="nom" name="nom" class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label for="population" class="block text-black font-medium mb-2">Population:</label>
+                        <input type="number" id="population" name="population" class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label for="langue" class="block text-black font-medium mb-2">Langue:</label>
+                        <input type="text" id="langue" name="langue" class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label for="continent" class="block text-black font-medium mb-2">Continent:</label>
+                        <select id="continent" name="continent" class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
+                            <option value="" disabled selected>Sélectionnez un Continent</option>
+                            <option value="1">Afrique</option>
+                            <option value="2">Asie</option>
+                            <option value="3">Europe</option>
+                            <option value="4">Amérique</option>
+                            <option value="5">Océanie</option>
+                        </select>
+                    </div>
+    
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" id="closeModal" class="bg-white text-gray-700 px-4 py-2 rounded-md hover:bg-[#f2902f] hover:text-black hover:transition-all hover:duration-300 hover:ease-in-out">Annuler</button>
+                        <button type="submit" class="bg-[#f2902f] text-white px-4 py-2 rounded-md hover:bg-white hover:text-[#f2902f] hover:transition-all hover:duration-300 hover:ease-in-out">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        
+        <script src="main.js"></script>
     </body>
 </html>
