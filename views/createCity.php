@@ -11,7 +11,25 @@ $succesMessage = "";
 $errorMessage = "";
 
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $name = $_POST["nom"];
+    
+    if(isset($_POST["pays"])) {
+        $pays = $_POST["pays"];
+    } else {
+        $pays = "";
+    }
+    
 
+        
+    
+        // $nom = "";
+        // $population = "";
+        // $langue = "";
+    
+        // $succesMessage = "Ville ajouter avec succes";
+    } while (false);
+}
 ?>
 
 <!DOCTYPE html>
