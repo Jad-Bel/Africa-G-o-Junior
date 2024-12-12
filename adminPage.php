@@ -108,7 +108,11 @@
                             <th class="border border-gray-300 px-4 py-2 text-left">Nom</th>
                             <th class="border border-gray-300 px-4 py-2 text-left flex items-center justify-between">Langue
                                 <div class="addCountryBtn rounded-xl font-bold text-lg flex items-center justify-center bg-[#f2902f] text-black w-12 p-1">
-                                    <button class=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
+                                    <a href="/africa-geo-junior/views/create.php">
+                                        <button class="">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+                                        </button>
+                                    </a>
                                 </div>
                             </th>
                         </tr>
@@ -116,13 +120,6 @@
                     <!-- table body -->
                     <tbody>
                         <?php
-                            $servername = "localhost";
-                            $username = "root";
-                            $passwrd = "";
-                            $database = "jeux_geo";
-                            
-                            $connect = mysqli_connect($servername, $username, $passwrd, $database);
-
                             $data = "SELECT * FROM pays";
                             $result = $connect -> query($data);
 
@@ -200,44 +197,7 @@
         </div>
 
         <!-- modal d'ajoute du pays -->
-        <div id="countryModal" class="fixed hidden absolute top-[12.5%] left-[35%]">
-            <div class="bg-gray-400 rounded-lg shadow-lg w-96 p-6">
-                <h2 class="text-xl font-bold mb-4">Ajouter un Pays</h2>
-                <form method="post">
-                    <div class="mb-4">
-                        <label for="nom" class="block text-black font-medium mb-2">Nom du Pays:</label>
-                        <input type="text" id="nom" name="nom" class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
-                    </div>
-    
-                    <div class="mb-4">
-                        <label for="population" class="block text-black font-medium mb-2">Population:</label>
-                        <input type="number" id="population" name="population" class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
-                    </div>
-    
-                    <div class="mb-4">
-                        <label for="langue" class="block text-black font-medium mb-2">Langue:</label>
-                        <input type="text" id="langue" name="langue" class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
-                    </div>
-    
-                    <div class="mb-4">
-                        <label for="continent" class="block text-black font-medium mb-2">Continent:</label>
-                        <select id="continent" name="continent" class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
-                            <option value="" disabled selected>Sélectionnez un Continent</option>
-                            <option value="1">Afrique</option>
-                            <option value="2">Asie</option>
-                            <option value="3">Europe</option>
-                            <option value="4">Amérique</option>
-                            <option value="5">Océanie</option>
-                        </select>
-                    </div>
-    
-                    <div class="flex justify-end space-x-2">
-                        <button type="button" id="closeModal" class="bg-white text-gray-700 px-4 py-2 rounded-md hover:bg-[#f2902f] hover:text-black hover:transition-all hover:duration-300 hover:ease-in-out">Annuler</button>
-                        <button type="submit" class="bg-[#f2902f] text-white px-4 py-2 rounded-md hover:bg-white hover:text-[#f2902f] hover:transition-all hover:duration-300 hover:ease-in-out">Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        
 
         
         <script src="main.js"></script>
