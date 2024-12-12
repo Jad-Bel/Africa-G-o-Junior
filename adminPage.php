@@ -153,7 +153,11 @@
                             <th class="border border-gray-300 px-4 py-2 text-left">Capital</th>
                             <th class="border border-gray-300 px-4 py-2 text-left flex items-center justify-between">id du pays 
                                 <div class="addCityBtn rounded-xl font-bold text-lg flex items-center justify-center bg-[#f2902f] text-black w-12 p-1">
-                                    <button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
+                                    <a href="/views/createCity.php">
+                                        <button>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+                                        </button>
+                                    </a>
                                 </div>
                             </th>
                         </tr>

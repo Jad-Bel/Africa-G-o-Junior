@@ -1,6 +1,5 @@
 <?php
 include "/xampp/htdocs/africa-geo-junior/views/connect.php";
-include "/xampp/htdocs/africa-geo-junior/views/connect.php";
 
 $nom = "";
 $population = "";
@@ -104,12 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="population" class="block text-black font-medium mb-2">Population:</label>
                     <input type="number" id="population" name="population" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="<?php echo "$population" ?>">
                 </div>
-
-                <div class="mb-4">
-                    <label for="langue" class="block text-black font-medium mb-2">Langue:</label>
-                    <input type="text" id="langue" name="langue" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="<?php echo "$langue" ?>">
-                </div>
-
+                
                 <div class="mb-4">
                     <label for="continent" class="block text-black font-medium mb-2">Continent:</label>
                     <select id="continent" name="continent" class="w-full border border-gray-300 px-4 py-2 rounded-lg">
@@ -124,6 +118,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     </select>
                 </div>
+                
+                <div class="mb-4">
+                    <label for="langue" class="block text-black font-medium mb-2">Langue:</label>
+                    <input type="text" id="langue" name="langue" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="<?php echo "$langue" ?>">
+                </div>
+
 
                 <?php
                 if (!empty($succesMessage)) {
