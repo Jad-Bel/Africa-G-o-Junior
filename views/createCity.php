@@ -1,5 +1,18 @@
 
+<?php 
 
+include "/xampp/htdocs/africa-geo-junior/views/connect.php";
+
+$name = "";
+$capital = "";
+$pays = "";
+
+$succesMessage = "";
+$errorMessage = "";
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +74,20 @@
                     <input type="checkbox" id="capital" name="Capital" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="1">
                 </div>
 
-                
+                <div class="mb-4">
+                    <label for="pays" class="block text-black font-medium mb-2">pays:</label>
+                    <select id="pays" name="pays" class="w-full border border-gray-300 px-4 py-2 rounded-lg">
+                        <option value="" disabled selected>Sélectionnez un pays</option>
+                        
+                        <?php 
+                            $result = $connect->query("SELECT id_pays, nom FROM pays");
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<option value='" . $row['id_pays'] . "'>" . $row['nom'] . "</option>";
+                            } 
+                        ?>
+
+                    </select>
+                </div>
 
                 <?php
                 if (!empty($succesMessage)) {
