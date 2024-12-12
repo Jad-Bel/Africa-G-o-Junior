@@ -1,9 +1,11 @@
 <?php
 include "/xampp/htdocs/africa-geo-junior/views/connect.php";
+include "/xampp/htdocs/africa-geo-junior/views/connect.php";
 
 $nom = "";
 $population = "";
 $langue = "";
+$continent = "";
 
 $succesMessage = "";
 $errorMessage = "";
@@ -13,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nom = $_POST["nom"];
     $population = $_POST["population"];
     $langue = $_POST["langue"];
+    $continent = $_POST["continent"];
 
     do {
         if (empty($nom) || empty($population) || empty($langue)) {
@@ -21,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // insert new country to the db
-        $sql = "INSERT INTO pays (`nom`, `population`, `langue`) VALUES ('$nom', '$population', '$langue')";
+        $sql = "INSERT INTO pays (`nom`, `population`, `langue`, `continent_id`) VALUES ('$nom', '$population', '$langue', '$continent')";
         $result = $connect -> query($sql);
 
         if (!$result) {
@@ -111,11 +114,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="continent" class="block text-black font-medium mb-2">Continent:</label>
                     <select id="continent" name="continent" class="w-full border border-gray-300 px-4 py-2 rounded-lg">
                         <option value="" disabled selected>Sélectionnez un Continent</option>
-                        <option value="1">Afrique</option>
-                        <option value="2">Asie</option>
-                        <option value="3">Europe</option>
-                        <option value="4">Amerique</option>
-                        <option value="5">Australie</option>
+                        
+                        <?php 
+                            $result = $connect->query("SELECT continent_id, nom FROM continent");
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<option value='" . $row['continent_id'] . "'>" . $row['nom'] . "</option>";
+                            } 
+                        ?>
+
                     </select>
                 </div>
 
