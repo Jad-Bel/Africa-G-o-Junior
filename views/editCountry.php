@@ -1,18 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-<div class="bg-red-500 w-60 flex items-center justify-center border-2 border-red-300 rounded-lg p-1">
-    <strong>All the fields are required</strong>
-</div>    
-</body>
-</html> -->
-
 <?php
 /*include "/xampp/htdocs/africa-geo-junior/views/connect.php";
 
@@ -71,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // GET method: show the data of the country;
 
     if (!isset($_GET["id_pays"])) {
-        header("location: /africa-geo-junior/adminPage.php");
+        header("location: /africa-geo-junior/views/editCountry.php");
         exit;
     } else {
         $id = $_GET["id_pays"];
@@ -82,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     if (!$row) {
-        header("location: /africa-geo-junior/adminPage.php");
+        header("location: /africa-geo-junior/views/editCountry.php");
         exit;
     }
 

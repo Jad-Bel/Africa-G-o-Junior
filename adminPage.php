@@ -87,12 +87,7 @@
                             while($row = $result->fetch_assoc()) { ?>
                                 <tr class="odd:bg-gray-100 even:bg-white">
                                     <td class="border border-gray-300 px-4 py-2"><?= $row['continent_id'] ?></td>
-                                    <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['nom'] ?>
-                                        <div>
-                                            <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
-                                            <a href="" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
-                                        </div>
-                                    </td>
+                                    <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['nom'] ?></td>
                                 </tr>
                                 
                            <?php } ?>
@@ -134,8 +129,8 @@
                                     <td class="border border-gray-300 px-4 py-2"><?= $row['nom'] ?></td>
                                     <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['langue'] ?>
                                         <div class="flex">
-                                            <a href="/views/edit.php ?id=$row['id_pays']" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
-                                            <a href="/views/delete.php ?id=$row['id_pays']" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
+                                            <a href="/views/editCountry.php?id=<?=$row['id_pays']?>" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
+                                            <a href="/views/editCountry.php ?id=<?$row['id_pays']?>" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
                                         </div>
                                 </td>
                                 </tr>
@@ -188,7 +183,7 @@
                                     <td class="border border-gray-300 px-4 py-2"><?= ($row['capital'] == 1) ? "Oui" : "Non";  ?></td>
                                     <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['id_pays'] ?>
                                         <div class="flex">
-                                            <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
+                                            <a href="/views/editCountry.php" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
                                             <a href="" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
                                         </div>
                                 </td>
@@ -198,12 +193,7 @@
                     </tbody>
                 </table>
             </main>
-        </div>
-
-        <!-- modal d'ajoute du pays -->
-        
-
-        
+        </div>        
         <script src="main.js"></script>
     </body>
 </html>
