@@ -55,23 +55,35 @@ $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // GET method: show the data of the country;
 
-    if (!isset($_GET["id_pays"])) {
-        header("location: /africa-geo-junior/views/editCountry.php");
-        exit;
-    } else {
-        $id = $_GET["id_pays"];
+    if (!isset($_GET["id_pays"]) || empty($_GET["id_pays"])) {
+        // header("location: /africa-geo-junior/views/editCountry.php");
+        echo "0git";
+        // exit;
+    }
+        $id = intval($_GET["id_pays"]);
 
-        $sql = "SELECT * FROM pays WHERE id=$id";
+        $sql = "SELECT * FROM pays WHERE id = $id";
         $result = $connect -> query($sql);
-        $row = $result -> fetch_assoc();
-    }
 
-    if (!$row) {
-        header("location: /africa-geo-junior/views/editCountry.php");
-        exit;
-    }
+        if($result->num_rows > 0){
+            echo "1";
+            // $row = $result->fetch_assoc();
+            // $nom = $row["nom"];
+            // $population = $row["population"];
+            // $continent = $row["continent"];
+        } else {
+            // header("location: /africa-geo-junior/adminPage.php");
+            echo "2";
+            // exit;
+        };
+        echo "3";
 
-} else {
+    // if (!$row) {
+    //     header("location: /africa-geo-junior/adminPage.php");
+    //     exit;
+    // }
+
+    } else {
 // POST method: to post and update the data of the country;
 }
 

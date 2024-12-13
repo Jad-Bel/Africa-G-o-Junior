@@ -129,7 +129,7 @@
                                     <td class="border border-gray-300 px-4 py-2"><?= $row['nom'] ?></td>
                                     <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['langue'] ?>
                                         <div class="flex">
-                                            <a href="/views/editCountry.php?id=<?=$row['id_pays']?>" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
+                                            <a href="/africa-geo-junior/views/editCountry.php?id=<?=$row['id_pays']?>" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
                                             <a href="/views/editCountry.php ?id=<?$row['id_pays']?>" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
                                         </div>
                                 </td>
