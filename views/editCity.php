@@ -1,3 +1,30 @@
+<?php 
+include "/xampp/htdocs/africa-geo-junior/views/connect.php";
+
+$id = "";
+$capital = "";
+$pays = "";
+
+$succesMessage = "";
+$errorMessage = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (!isset($_GET['id_ville']) || empty($_GET['id_ville'])) {
+        echo "1";
+    }
+
+    $id = intval($_GET['id_ville']);
+
+    $sql = "SELECT * FROM ville where id_ville = $id";
+    $result = $connect->query($sql);
+
+    $row = $result->fetch_assoc();
+    $nom = $row('nom');
+    $capital = intval($row('capital'));
+    $pays = intval($row('id_pays'));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +74,7 @@
                 }
                 ?>
 
-
+                <input type="hidden" name="id_ville" value="<?php echo "$id" ?>">
                 <div class="mb-4">
                     <label for="nom" class="block text-black font-medium mb-2">Nom de Ville:</label>
                     <input type="text" id="nom" name="nom" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="<?php echo "$name" ?>">
@@ -69,7 +96,6 @@
                                 echo "<option value='" . $row['id_pays'] . "'>" . $row['nom'] . "</option>";
                             } 
                         ?>
-
                     </select>
                 </div>
 

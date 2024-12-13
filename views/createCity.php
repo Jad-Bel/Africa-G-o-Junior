@@ -114,11 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <input type="text" id="nom" name="nom" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="<?php echo "$name" ?>">
                 </div>
 
-                <div class="mb-4">
-                    <label for="Capital" class="block text-black font-medium mb-2">Capital:</label>
-                    <input type="checkbox" id="capital" name="Capital" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="1">
-                </div>
-
+                
                 <div class="mb-4">
                     <label for="pays" class="block text-black font-medium mb-2">pays:</label>
                     <select id="pays" name="pays" class="w-full border border-gray-300 px-4 py-2 rounded-lg">
@@ -129,22 +125,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             while ($row = $result->fetch_assoc()) {
                                 echo "<option value='" . $row['id_pays'] . "'>" . $row['nom'] . "</option>";
                             } 
-                        ?>
-
-                    </select>
+                            ?>
+                </select>
                 </div>
 
-                <?php
-                if (!empty($succesMessage)) {
-                    echo "
-                    <div class=\"flex justify-center\">
-                        <div class=\"bg-green-500 w-64 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
-                            <strong>$succesMessage</strong>
-                        </div>
-                    </div>
-                    ";
-                }
-                ?>
+                <div class="mb-4">
+                    <label for="Capital" class="block text-black font-medium mb-2">Capital:</label>
+                    <input type="checkbox" id="capital" name="Capital" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="1">
+                </div>
+
+                            <?php
+                            if (!empty($succesMessage)) {
+                                echo "
+                                <div class=\"flex justify-center\">
+                                <div class=\"bg-green-500 w-64 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
+                                <strong>$succesMessage</strong>
+                                </div>
+                                </div>
+                                ";
+                            }
+                            ?>
 
                 <div class="flex justify-end space-x-2">
                     <button type="button" id="closeModal" class="bg-white text-gray-700 px-4 py-2 rounded-md hover:bg-[#f2902f] hover:text-black hover:transition-all hover:duration-300 hover:ease-in-out">Annuler</button>
