@@ -48,6 +48,7 @@ $id = "";
 $nom = "";
 $population = "";
 $continent = "";
+$langue = "";
 
 $succesMessage = "";
 $errorMessage = "";
@@ -56,35 +57,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // GET method: show the data of the country;
 
     if (!isset($_GET["id_pays"]) || empty($_GET["id_pays"])) {
-        // header("location: /africa-geo-junior/views/editCountry.php");
-        echo "0git";
-        // exit;
+        header("location: /africa-geo-junior/views/editCountry.php");
+        exit;
     }
         $id = intval($_GET["id_pays"]);
 
-        $sql = "SELECT * FROM pays WHERE id = $id";
+        $sql = "SELECT * FROM pays WHERE id_pays = $id";
         $result = $connect -> query($sql);
 
-        if($result->num_rows > 0){
-            echo "1";
-            // $row = $result->fetch_assoc();
-            // $nom = $row["nom"];
-            // $population = $row["population"];
-            // $continent = $row["continent"];
-        } else {
-            // header("location: /africa-geo-junior/adminPage.php");
-            echo "2";
-            // exit;
-        };
-        echo "3";
+        $row = $result->fetch_assoc();
+        $nom = $row['nom'];
+        $population = $row['Population'];
+        $langue = $row['langue'];
 
-    // if (!$row) {
-    //     header("location: /africa-geo-junior/adminPage.php");
-    //     exit;
-    // }
+    if (!$row) {
+        header("location: /africa-geo-junior/adminPage.php");
+        exit;
+    }
 
     } else {
 // POST method: to post and update the data of the country;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nom = $_POST["nom"];
+    $population = $_POST["population"];
+    $langue = $_POST["langue"];
+    $continent = $_POST["continent"];
+
+    do {
+            if (empty($nom) || empty($population) || empty($langue)) {
+                $errorMessage = "All the fields are required";
+                break;
+            }
+
+            // insert new country to the db
+            $sql = "INSERT INTO pays (`nom`, `population`, `langue`, `continent_id`) VALUES ('$nom', '$population', '$langue', '$continent')";
+            $result = $connect -> query($sql);
+
+            if (!$result) {
+                $errorMessage = "Invalid query " . $connect->error;
+                break;
+            }
+
+            $nom = "";
+            $population = "";
+            $langue = "";
+
+            $succesMessage = "Country added correctly";
+
+            header("location: /africa-geo-junior/adminPage.php");
+            exit;
+        } while (false);
+    }
 }
 
 ?>
@@ -126,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     <div id="countryModal" class="fixed absolute top-[17.5%] left-[20%]">
         <div class="bg-gray-400 rounded-lg shadow-lg w-[45rem] p-6">
-            <h2 class="text-xl font-bold mb-4">Ajouter un Pays</h2>
+            <h2 class="text-xl font-bold mb-4">Modifier un Pays</h2>
             <form method="post">
                 <input type="hidden" value="<?php echo "$id" ?>">
                 <?php
@@ -183,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
                 <div class="flex justify-end space-x-2">
                     <button type="button" id="closeModal" class="bg-white text-gray-700 px-4 py-2 rounded-md hover:bg-[#f2902f] hover:text-black hover:transition-all hover:duration-300 hover:ease-in-out">Annuler</button>
-                    <button type="submit" class="bg-[#f2902f] text-white px-4 py-2 rounded-md hover:bg-white hover:text-[#f2902f] hover:transition-all hover:duration-300 hover:ease-in-out">Ajouter</button>
+                    <button type="submit" class="bg-[#f2902f] text-white px-4 py-2 rounded-md hover:bg-white hover:text-[#f2902f] hover:transition-all hover:duration-300 hover:ease-in-out">Modifier</button>
                 </div>
             </form>
         </div>
