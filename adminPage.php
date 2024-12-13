@@ -183,8 +183,8 @@
                                     <td class="border border-gray-300 px-4 py-2"><?= ($row['capital'] == 1) ? "Oui" : "Non";  ?></td>
                                     <td class="border border-gray-300 px-4 py-2 flex justify-between"><?= $row['id_pays'] ?>
                                         <div class="flex">
-                                            <a href="/views/editCountry.php" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
-                                            <a href="" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
+                                            <a href="/africa-geo-junior/views/editCity.php?id_ville=<?=$row['id_ville']?>" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
+                                            <a href="/africa-geo-junior/views/.php?id_ville=<?=$row['id_ville']?>" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ml-2">Delete</a>
                                         </div>
                                 </td>
                                 </tr>
