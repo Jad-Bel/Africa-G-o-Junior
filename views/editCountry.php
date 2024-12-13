@@ -36,46 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // POST method: to post and update the data of the country;
-    // if (!isset($_POST["id_pays"]) || empty($_POST["id_pays"])) {
-        // header("location: /africa-geo-junior/views/editCountry.php");
-        // exit;
-        // echo "5";
-    // }
-    // $id = intval($_POST["id_pays"]);
-    // $nom = $_POST["nom"];
-    // $population = $_POST["Population"];
-    // $langue = $_POST["langue"];
-    // $continent = $_POST["continent_id"];
-
-
-    // do {
-    //     echo "1";
-    //     if (empty($nom) || empty($population) || empty($langue) || empty($continent)) {
-    //         $errorMessage = "All the fields are required";
-    //         break;
-    //     }
-
-    //     // insert new country to the db
-    //     $sql = "UPDATE pays 
-    //                 SET `nom`= '$nom', 
-    //                     `Population`= '$population', 
-    //                     `langue` = '$langue', 
-    //                     `continent_id` = '$continent'
-    //             WHERE id_pays = $id";
-    //     $result = $connct->query($sql);
-
-    //     if (!$result) {
-    //         $errorMessage = "Invalid query " . $connect->error;
-    //         break;
-    //         echo "2";
-    //     }
-
-
-    //     $succesMessage = "Country added correctly";
-
-    //     // header("location: /africa-geo-junior/adminPage.php");
-    //     // exit;
-    // } while (false);
 
     $id = $_POST['id_pays'];
     $nom = $_POST['nom'];
