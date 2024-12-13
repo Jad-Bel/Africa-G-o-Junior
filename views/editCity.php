@@ -15,13 +15,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $id = intval($_GET['id_ville']);
 
-    $sql = "SELECT * FROM ville where id_ville = $id";
+    $sql = "SELECT * FROM ville WHERE id_ville = $id";
     $result = $connect->query($sql);
 
     $row = $result->fetch_assoc();
-    $nom = $row('nom');
-    $capital = intval($row('capital'));
-    $pays = intval($row('id_pays'));
+    $nom = $row['nom'];
+    $capital = intval($row['capital']);
+    $pays = intval($row['id_pays']);
+
+    if (!$row) {
+        echo "2";
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST['id_ville'];
+    $nom = $_POST['nom'];
+    $capital = $_POST['capital'];
+    $pays = $_POST['id_pays'];
+    
+    do {
+        if (empty($nom) || empty($pays)) {
+            $errorMessage = "Entrer les deux champs nom de ville et le pays du ville";
+            break;
+        }
+
+        $sql = "UPDATE ville " . 
+        "SET `nom`='$nom', `capital`='$capital', `id_pays`='$pays' " . 
+        "WHERE id_ville = $id";
+
+        $result = $connect->query($sql);
+
+        if(!$result) {
+            $errorMessage = "Invalid query: " . $connect->error;
+            break;
+        }
+
+        $succesMessage = "Ville modifier avec success";
+    } while (true);
 }
 ?>
 
@@ -60,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     <div id="cityModal" class="fixed absolute top-[17.5%] left-[20%]">
         <div class="bg-gray-400 rounded-lg shadow-lg w-[45rem] p-6">
-            <h2 class="text-xl font-bold mb-4">Ajouter un Pays</h2>
+            <h2 class="text-xl font-bold mb-4">Modifier une Ville</h2>
             <form method="post">
                 <?php
                 if (!empty($errorMessage)) {
@@ -77,17 +108,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 <input type="hidden" name="id_ville" value="<?php echo "$id" ?>">
                 <div class="mb-4">
                     <label for="nom" class="block text-black font-medium mb-2">Nom de Ville:</label>
-                    <input type="text" id="nom" name="nom" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="<?php echo "$name" ?>">
+                    <input type="text" id="nom" name="nom" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="<?php echo "$nom" ?>">
                 </div>
 
                 <div class="mb-4">
                     <label for="Capital" class="block text-black font-medium mb-2">Capital:</label>
-                    <input type="checkbox" id="capital" name="Capital" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="1">
+                    <input type="checkbox" id="capital" name="capital" class="w-full border border-gray-300 px-4 py-2 rounded-lg" value="1">
                 </div>
 
                 <div class="mb-4">
                     <label for="pays" class="block text-black font-medium mb-2">pays:</label>
-                    <select id="pays" name="pays" class="w-full border border-gray-300 px-4 py-2 rounded-lg">
+                    <select id="pays" name="id_pays" class="w-full border border-gray-300 px-4 py-2 rounded-lg">
                         <option value="" disabled selected>Sélectionnez un pays</option>
                         
                         <?php 
